@@ -3,29 +3,31 @@ const initialState = {
   message: "",
 };
 
-const reducer = (state = initialState, action = {}) => {
+const reducerKnight = (state = initialState, action = {}) => {
   switch (action.type) {
-    case "ADD":
+    case ADD:
       return {
         ...state,
         dragon: [...state.dragon, { name: action.name, age: action.age }],
       };
-    case "message":
+    case MESSAGE:
       return { ...state, message: action.value };
-    case "delete":
+    case DELETE:
       return {
         ...state,
         dragon: state.dragon.filter((el) => el !== action.value),
       };
-    case "reverse":
+    case REVERSE:
       return {
         ...state,
         name: state.dragon.reverse(),
       };
+    case CONNECT_KNIGHT_TO_DRAGON:
+      return {};
 
     default:
       return state;
   }
 };
 
-export default reducer;
+export default reducerKnight;

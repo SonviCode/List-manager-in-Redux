@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { addDragon, messageDragon, reverseDragon } from "../../Actions/actions.type";
 
 const Form = () => {
-  const { dragon } = useSelector((state) => state);
+  const { dragon } = useSelector((state) => state.reducerDragon);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -17,24 +18,21 @@ const Form = () => {
     }
 
     for (const el of dragon) {
-      if (nameDragon.trim() === el) {
+      if (nameDragon.trim() == el) {
         alert("Il y a déjà un dragon avec ce nom !");
         return;
       }
     }
 
-    dispatch({ type: "ADD", name: nameDragon, age: ageDragon });
-    dispatch({
-      type: "message",
-      value: `Merci votre dragon ${nameDragon} a bien été ajouté !`,
-    });
+    dispatch(addDragon(nameDragon, ageDragon));
+    dispatch(messageDragon(`Merci votre dragon ${nameDragon} a bien été ajouté !`));
 
     e.target.elements.name.value = "";
     e.target.elements.age.value = "";
   };
 
   const handleReverse = () => {
-    dispatch({ type: "reverse" });
+    dispatch(reverseDragon());
   };
 
   return (

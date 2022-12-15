@@ -1,17 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Form from "../Components/Form";
-import List from "../Components/List";
+import { messageDragon } from "../Actions/actions.type";
+import Form from "../Components/Dragon/Form";
+import List from "../Components/Dragon/List";
 
-const Home = () => {
-  const { dragon, message } = useSelector((state) => state);
+const Dragon = () => {
+  const { dragon, message } = useSelector((state) => state.reducerDragon);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch({ type: "message" });
+      dispatch(messageDragon(""));
     }, 1000);
   }, [message]);
+  console.log(dragon);
+
+  // console.log(localStorage.getItem({ ...localStorage }
+  //   ));
+
+  // useEffect(() => {
+  //   localStorage.setItem(dragon.indexOf(dragon[0]), dragon);
+  // }, []);
 
   return (
     <main>
@@ -32,4 +41,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dragon;
