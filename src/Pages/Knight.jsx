@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { messageKnight } from "../Actions/actions.type";
+import { messageKnight } from "../Redux/Actions/actions.type";
 import Form from "../Components/Knight/Form";
 import List from "../Components/Knight/List";
 

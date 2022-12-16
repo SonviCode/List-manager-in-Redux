@@ -7,7 +7,9 @@ import {
 } from "../../Constants/actions";
 
 const initialState = {
-  knight: [{ knight_name: "TomMessage", age: "24" }],
+  knight: [
+    { knight_name: "TomMessage", age: "24", dragonForKnight: "Dracofeu" },
+  ],
   message: "",
 };
 
@@ -16,7 +18,14 @@ const reducerKnight = (state = initialState, action = {}) => {
     case ADD_KNIGHT:
       return {
         ...state,
-        knight: [...state.knight, { knight_name: action.knight_name, age: action.age }],
+        knight: [
+          ...state.knight,
+          {
+            knight_name: action.knight_name,
+            age: action.age,
+            dragonForKnight: action.dragonForKnight,
+          },
+        ],
       };
     case MESSAGE_KNIGHT:
       return { ...state, message: action.value };

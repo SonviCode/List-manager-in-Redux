@@ -4,7 +4,6 @@ const Nav = () => {
   const checkIsActive = ({ isActive }) => {
     return {
       color: isActive ? "black" : "gray",
-      text: isActive ? "underline" : "",
     };
   };
 
@@ -19,6 +18,11 @@ const Nav = () => {
         <li>
           <NavLink style={checkIsActive} to="/knight">
             Knight
+          </NavLink>
+        </li>
+        <li>
+          <NavLink style={checkIsActive} to="/log">
+            Logs
           </NavLink>
         </li>
       </ul>

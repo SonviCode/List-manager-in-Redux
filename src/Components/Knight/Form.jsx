@@ -1,6 +1,12 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addKnight, messageDragon, messageKnight, reverseKnight } from "../../Actions/actions.type";
+import {
+  addKnight,
+  messageDragon,
+  messageKnight,
+  reverseKnight,
+  changeStatusDragon,
+} from "../../Redux/Actions/actions.type";
 
 const Form = () => {
   const { knight } = useSelector((state) => state.reducerKnight);
@@ -12,6 +18,7 @@ const Form = () => {
 
     const nameKnight = e.target.elements.name.value;
     const ageKnight = e.target.elements.age.value;
+    const dragonKnight = e.target.elements.dragonChoice.value;
 
     if (nameKnight.trim() === "" || ageKnight.trim() === "") {
       alert("Il y a un champ vide !");
@@ -25,8 +32,11 @@ const Form = () => {
       }
     }
 
-    dispatch(addKnight(nameKnight, ageKnight));
-    dispatch(messageKnight(`Merci votre knight ${nameKnight} a bien été ajouté !`));
+    dispatch(addKnight(nameKnight, ageKnight, dragonKnight));
+    dispatch(
+      messageKnight(`Merci votre knight ${nameKnight} a bien été ajouté !`)
+    );
+    dispatch(changeStatusDragon(dragonKnight));
 
     e.target.elements.name.value = "";
     e.target.elements.age.value = "";
@@ -56,15 +66,29 @@ const Form = () => {
             className="block text-sm py-3 px-4 rounded-lg w-full border outline-none"
           />
         </div>
-        <select name="connectDragonToKnight" id="dragonChoice">
+
+        <select
+          name="connectDragonToKnight"
+          id="dragonChoice"
+          className="px-4 py-1 w-max text-xl text-white bg-blue-300 rounded-md"
+        >
+          <option
+            disabled
+            defaultValue={"Choisi un dragon"}
+            className="px-4 py-2 bg-white w-full hover:bg-red-100 hover:text-red-900 border-b last:border-none border-red-200 transition-all duration-300 ease-in-out  flex items-center"
+          >
+            Choisi un dragon
+          </option>
           {dragon.map((el, i) => {
             return (
-              <option
-                key={i}
-                className="px-4 py-2 bg-white w-full hover:bg-red-100 hover:text-red-900 border-b last:border-none border-red-200 transition-all duration-300 ease-in-out  flex items-center"
-              >
-                {el.drag_name} - {el.age}ans
-              </option>
+              el.status === "Free ✅" && (
+                <option
+                  key={i}
+                  className="px-4 py-2 bg-white w-full text-blue-600 transition-all duration-300 ease-in-out flex items-center"
+                >
+                  {el.drag_name}
+                </option>
+              )
             );
           })}
         </select>

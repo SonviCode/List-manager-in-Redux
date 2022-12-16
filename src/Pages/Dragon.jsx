@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { messageDragon } from "../Actions/actions.type";
+import { messageDragon } from "../Redux/Actions/actions.type";
 import Form from "../Components/Dragon/Form";
 import List from "../Components/Dragon/List";
 
@@ -13,7 +13,6 @@ const Dragon = () => {
       dispatch(messageDragon(""));
     }, 1000);
   }, [message]);
-  console.log(dragon);
 
   // console.log(localStorage.getItem({ ...localStorage }
   //   ));

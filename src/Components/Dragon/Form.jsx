@@ -1,6 +1,10 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { addDragon, messageDragon, reverseDragon } from "../../Actions/actions.type";
+import {
+  addDragon,
+  messageDragon,
+  reverseDragon,
+} from "../../Redux/Actions/actions.type";
 
 const Form = () => {
   const { dragon } = useSelector((state) => state.reducerDragon);
@@ -24,8 +28,10 @@ const Form = () => {
       }
     }
 
-    dispatch(addDragon(nameDragon, ageDragon));
-    dispatch(messageDragon(`Merci votre dragon ${nameDragon} a bien été ajouté !`));
+    dispatch(addDragon(nameDragon, ageDragon, "Free ✅"));
+    dispatch(
+      messageDragon(`Merci votre dragon ${nameDragon} a bien été ajouté !`)
+    );
 
     e.target.elements.name.value = "";
     e.target.elements.age.value = "";
